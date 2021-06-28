@@ -1,4 +1,5 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 void action_attack(ClapTrap & attacker, ClapTrap &victim)
 {
@@ -14,16 +15,18 @@ void defeat(ClapTrap & looser)
 int main(void)
 {
     std::cout << "\033[1;36m";
-    ClapTrap hero("Hero");
+    ScavTrap hero("Hero");
     std::cout << std::endl;
     ClapTrap enemy("Enemy");
     int input;
 
-    enemy.setAttackDamage(2);
-    hero.setAttackDamage(2);
+    enemy.setAttackDamage(25);
+    enemy.setHitPoints(50);
     std::cout << std::endl
-              << "\033[1;0mWelcome back !" << std::endl << std::endl
-              << "This is level 1, you are now a CL4P-TP soldier" << std::endl
+              << "\033[1;0mWelcome back Hero !" << std::endl << std::endl
+              << "This is level 2, you are now a SC4V-TP soldier" << std::endl
+              << "Your stats have been increased and you gain a passive (Gate Keepee)!" << std::endl
+              << "\033[1;37mGate Keeper : when you are at or below 50HP you steal 20 of your enemy's HP (only once)" << std::endl << std::endl
               << "\033[1;0mWhat would you like to do ?" << std::endl;
 
     while (1)
@@ -37,6 +40,16 @@ int main(void)
         {
             defeat(enemy);
             break ;
+        }
+        else if (hero.getHitPoints() <= 50 && hero.getEnteredMode() == false)
+        {
+            std::cout << "\033[1;35m";
+            hero.guardGuate();
+            std::cout << "\033[1;37m";
+            enemy.takeDamage(20);
+            hero.beRepaired(20);
+            hero.setEnteredMode(true);
+            std::cout << "\033[1;0m";
         }
         std::cout << "______________________________________________________" << std::endl;
         std::cout << "[1] Attack enemy" << std::endl

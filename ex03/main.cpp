@@ -1,4 +1,7 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 void action_attack(ClapTrap & attacker, ClapTrap &victim)
 {
@@ -14,16 +17,18 @@ void defeat(ClapTrap & looser)
 int main(void)
 {
     std::cout << "\033[1;36m";
-    ClapTrap hero("Hero");
+    DiamondTrap hero("Hero");
     std::cout << std::endl;
     ClapTrap enemy("Enemy");
     int input;
 
-    enemy.setAttackDamage(2);
-    hero.setAttackDamage(2);
+    enemy.setAttackDamage(20);
+    enemy.setHitPoints(100);
     std::cout << std::endl
-              << "\033[1;0mWelcome back !" << std::endl << std::endl
-              << "This is level 1, you are now a CL4P-TP soldier" << std::endl
+              << "\033[1;0mWelcome back Hero !" << std::endl << std::endl
+              << "This is level 3, you are now a FR4G-TP soldier" << std::endl
+              << "Your stats have been increased and you gain an ultimate!" << std::endl
+              << "\033[1;37mUltimate High Five : get 5 additionnal attack damage." << std::endl << std::endl
               << "\033[1;0mWhat would you like to do ?" << std::endl;
 
     while (1)
@@ -39,7 +44,8 @@ int main(void)
             break ;
         }
         std::cout << "______________________________________________________" << std::endl;
-        std::cout << "[1] Attack enemy" << std::endl
+        std::cout << "[0] Ultimate High Five !" << std::endl
+                  << "[1] Attack enemy" << std::endl
                   << "[2] Heal yourself" << std::endl
                   << "[3] Exit Game" << std::endl
                   << "(Any other number will cause the Enemy to attack you)" << std::endl;
@@ -50,6 +56,9 @@ int main(void)
         std::cin >> input;
         switch (input) 
         {
+        case 0:
+            hero.setAttackDamage(hero.getAttackDamage() + 5);
+            break;
         case 1:
             action_attack(hero, enemy);
             break;

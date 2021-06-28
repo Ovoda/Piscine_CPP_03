@@ -1,7 +1,7 @@
 NAME	= game
 
 CXX		= clang++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
 
 RM		= rm -rf
 

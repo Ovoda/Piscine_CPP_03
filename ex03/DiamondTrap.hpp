@@ -4,9 +4,13 @@
 # include <iostream>
 # include <string>
 # include "ClapTrap.hpp"
+# include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
-class DiamondTrap : virtual public ClapTrap
+class DiamondTrap : virtual public FragTrap, virtual public ScavTrap
 {
+	private:
+		std::string	_name;
 
 	public:
 
@@ -15,7 +19,11 @@ class DiamondTrap : virtual public ClapTrap
 		~DiamondTrap();
 
 		DiamondTrap &		operator=( DiamondTrap const & rhs );
+		//Getters and Setters
+		void		setName( std::string const name );
+		std::string	getName( void ) const;
 		// Methods
+		void		whoAmI( void ) const;
 
 };
 

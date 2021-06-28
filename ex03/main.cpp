@@ -3,15 +3,15 @@
 #include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
 
-void action_attack(ClapTrap & attacker, ClapTrap &victim)
+void action_attack(ClapTrap &attacker, ClapTrap &victim)
 {
     attacker.attack(victim.getName());
     victim.takeDamage(attacker.getAttackDamage());
 }
 
-void defeat(ClapTrap & looser)
+void defeat(ClapTrap &looser)
 {
-    std::cout << "FR4G-TP <" << looser.getName() << "> has been defeated" << std::endl;
+    std::cout << "FR4G-TP <" << looser.ClapTrap::getName() << "> has been defeated" << std::endl;
 }
 
 int main(void)
@@ -23,12 +23,14 @@ int main(void)
     int input;
 
     enemy.setAttackDamage(20);
-    enemy.setHitPoints(100);
+    enemy.setHitPoints(500);
     std::cout << std::endl
-              << "\033[1;0mWelcome back Hero !" << std::endl << std::endl
+              << "\033[1;0mWelcome back Hero !" << std::endl
+              << std::endl
               << "This is level 3, you are now a FR4G-TP soldier" << std::endl
               << "Your stats have been increased and you gain an ultimate!" << std::endl
-              << "\033[1;37mUltimate High Five : get 5 additionnal attack damage." << std::endl << std::endl
+              << "\033[1;37mUltimate High Five : get 5 additionnal attack damage." << std::endl
+              << std::endl
               << "\033[1;0mWhat would you like to do ?" << std::endl;
 
     while (1)
@@ -36,28 +38,43 @@ int main(void)
         if (hero.getHitPoints() <= 0)
         {
             defeat(hero);
-            break ;
+            break;
         }
         else if (enemy.getHitPoints() <= 0)
         {
             defeat(enemy);
-            break ;
+            break;
+        }
+        else if (hero.getHitPoints() <= 50 && hero.ScavTrap::getEnteredMode() == false)
+        {
+            std::cout << "\033[1;35m";
+            hero.guardGuate();
+            std::cout << "\033[1;37m";
+            enemy.takeDamage(20);
+            hero.beRepaired(20);
+            hero.setEnteredMode(true);
+            std::cout << "\033[1;0m";
         }
         std::cout << "______________________________________________________" << std::endl;
         std::cout << "[0] Ultimate High Five !" << std::endl
                   << "[1] Attack enemy" << std::endl
                   << "[2] Heal yourself" << std::endl
-                  << "[3] Exit Game" << std::endl
+                  << "[3] Who am I ?" << std::endl
+                  << "[4] Exit Game" << std::endl
                   << "(Any other number will cause the Enemy to attack you)" << std::endl;
         std::cout << "______________________________________________________" << std::endl;
         std::cout << "\033[1;32m[Hero]  HP : " << hero.getHitPoints() << " AD: " << hero.getAttackDamage() << std::endl;
         std::cout << "\033[1;31m[Enemy] HP : " << enemy.getHitPoints() << " AD: " << enemy.getAttackDamage() << std::endl;
         std::cout << "\033[1;37maction : ";
         std::cin >> input;
-        switch (input) 
+        while (std::cin.fail())
+            std::cin >> input;
+    
+        switch (input)
         {
         case 0:
-            hero.setAttackDamage(hero.getAttackDamage() + 5);
+            hero.FragTrap::highFivesGuys();
+            hero.ClapTrap::setAttackDamage(hero.ClapTrap::getAttackDamage() + 5);
             break;
         case 1:
             action_attack(hero, enemy);
@@ -66,10 +83,14 @@ int main(void)
             hero.beRepaired(10);
             break;
         case 3:
+            hero.whoAmI();
+            break;
+        case 4:
             std::cout << "\033[1;36m" << std::endl;
             return (0);
         default:
             action_attack(enemy, hero);
+            break ;
         }
         std::cout << "\033[1;0m";
     }

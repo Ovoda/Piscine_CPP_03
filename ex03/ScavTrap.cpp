@@ -4,6 +4,14 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
+ScavTrap::ScavTrap( void ) {
+	setHitPoints( 100 );
+	setEnergyPoints(50);
+	setAttackDamage( 20 );
+	setEnteredMode(false);
+	std::cout << "SC4V-TP a new unit has been created by constructor" <<std::endl;
+}
+
 ScavTrap::ScavTrap( std::string name ) {
 	setName( name );
 	setHitPoints( 100 );

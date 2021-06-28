@@ -5,7 +5,7 @@
 */
 
 ClapTrap::ClapTrap( void ) : _hit_points(10), _energy_points(10), _attack_damage(0) {
-	std::cout << "CL4P-TP a new ClapTrap has been created by default constructor !" <<std::endl;
+	std::cout << "CL4P-TP a new unit has been created by default constructor !" <<std::endl;
 }
 
 ClapTrap::ClapTrap( std::string name ) : _name(name), _hit_points(10), _energy_points(10), _attack_damage(0) {

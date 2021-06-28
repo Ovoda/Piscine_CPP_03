@@ -4,6 +4,13 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
+FragTrap::FragTrap( void ) {
+	setHitPoints( 100 );
+	setEnergyPoints( 100 );
+	setAttackDamage( 30 );
+	std::cout << "FR4G-TP a new unit has been created by constructor" <<std::endl;
+}
+
 FragTrap::FragTrap( std::string name ) {
 	setName( name );
 	setHitPoints( 100 );

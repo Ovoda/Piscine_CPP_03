@@ -5,11 +5,12 @@
 */
 
 DiamondTrap::DiamondTrap( std::string name ) {
-	setName( name );
-	setHitPoints( 100 );
-	setEnergyPoints( 100 );
-	setAttackDamage( 30 );
-	std::cout << "FR4G-TP <" << _name << "> has been created by constructor" <<std::endl;
+	ClapTrap::setName( name );
+	setName( name + "_clap_name" );
+	setHitPoints( FragTrap::getHitPoints() );
+	setEnergyPoints( ScavTrap::getEnergyPoints() );
+	setAttackDamage( FragTrap::getHitPoints() );
+	std::cout << "DI4M-TP <" << _name << "> (" << ClapTrap::getName() << ") has been created by constructor" <<std::endl;
 }
 
 DiamondTrap::DiamondTrap( const DiamondTrap & src )
@@ -24,7 +25,7 @@ DiamondTrap::DiamondTrap( const DiamondTrap & src )
 
 DiamondTrap::~DiamondTrap()
 {
-	std::cout << "FR4G-TP <" << _name << "> has been destroyed by destructor" << std::endl;
+	std::cout << "DI4M-TP <" << _name << "> has been destroyed by destructor" << std::endl;
 }
 
 
@@ -61,8 +62,20 @@ std::ostream &			operator<<( std::ostream & o, DiamondTrap const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void		DiamondTrap::whoAmI( void ) const {
+	std::cout << "DI4M-TP <" << _name << "> <" << ClapTrap::getName() << "> ready for combat." << std::endl;
+}
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
+
+void		DiamondTrap::setName( std::string const name ) {
+	_name = name;
+}
+
+std::string	DiamondTrap::getName( void ) const {
+	return (_name);
+}
 
 /* ************************************************************************** */

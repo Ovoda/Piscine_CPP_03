@@ -27,10 +27,10 @@ int main(void)
     std::cout << std::endl
               << "\033[1;0mWelcome back Hero !" << std::endl
               << std::endl
-              << "This is level 3, you are now a FR4G-TP soldier" << std::endl
-              << "Your stats have been increased and you gain an ultimate!" << std::endl
+              << "This is the Final Level, you are now a DI4M-TP soldier" << std::endl
+              << "Your stats have been increased and you gain an ultimate and a passive ability (Gate Keeper) !" << std::endl
               << "\033[1;37mUltimate High Five : get 5 additionnal attack damage." << std::endl
-              << std::endl
+              << "\033[1;37mGate Keeper : when you are at or below 50HP you steal 20 of your enemy's HP (only once)" << std::endl << std::endl
               << "\033[1;0mWhat would you like to do ?" << std::endl;
 
     while (1)
@@ -67,9 +67,12 @@ int main(void)
         std::cout << "\033[1;31m[Enemy] HP : " << enemy.getHitPoints() << " AD: " << enemy.getAttackDamage() << std::endl;
         std::cout << "\033[1;37maction : ";
         std::cin >> input;
-        while (std::cin.fail())
-            std::cin >> input;
-    
+        if (std::cin.fail())
+        {
+            std::cout << "Wrong input, quitting the game..." << std::endl;
+            return (1);
+        }
+
         switch (input)
         {
         case 0:
@@ -90,7 +93,7 @@ int main(void)
             return (0);
         default:
             action_attack(enemy, hero);
-            break ;
+            break;
         }
         std::cout << "\033[1;0m";
     }

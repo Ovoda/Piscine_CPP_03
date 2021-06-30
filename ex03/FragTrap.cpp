@@ -73,6 +73,7 @@ void	FragTrap::highFivesGuys( void ) {
 	<< std::endl;
 }
 
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

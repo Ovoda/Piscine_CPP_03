@@ -56,7 +56,7 @@ ScavTrap &				ScavTrap::operator=( ScavTrap const & rhs )
 std::ostream &			operator<<( std::ostream & o, ScavTrap const & i )
 {
 	o << "Character details : " << std::endl
-	<< "\tclass: \t\tSV4V-TP" << std::endl 
+	<< "\tclass: \t\tSC4V-TP" << std::endl 
 	<< "\tname : \t\t" << i.getName() << std::endl
 	<< "\thit points : \t" << i.getHitPoints() << std::endl
 	<< "\tenergy points : " << i.getEnergyPoints() << std::endl
@@ -72,6 +72,18 @@ std::ostream &			operator<<( std::ostream & o, ScavTrap const & i )
 
 void	ScavTrap::guardGuate( void ) {
 	std::cout << "SC4V_TP <" << _name << "> has entered in Gate Keeper mode. He steals 20  HP !" << std::endl;
+}
+
+void	ScavTrap::attack( std::string const & target ) {
+	std::cout
+		<< "SC4V-TP <"
+		<< _name
+		<< "> attacks <"
+		<< target
+		<< ">, causing <"
+		<< _attack_damage
+		<< "> points of damage!"
+	<< std::endl;
 }
 
 /*

@@ -25,7 +25,7 @@ int main(void)
     std::cout << std::endl
               << "\033[1;0mWelcome back Hero !" << std::endl << std::endl
               << "This is level 2, you are now a SC4V-TP soldier" << std::endl
-              << "Your stats have been increased and you gain a passive (Gate Keepee)!" << std::endl
+              << "Your stats have been increased and you gain a passive ability (Gate Keepee)!" << std::endl
               << "\033[1;37mGate Keeper : when you are at or below 50HP you steal 20 of your enemy's HP (only once)" << std::endl << std::endl
               << "\033[1;0mWhat would you like to do ?" << std::endl;
 
@@ -61,6 +61,11 @@ int main(void)
         std::cout << "\033[1;31m[Enemy] HP : " << enemy.getHitPoints() << " AD: " << enemy.getAttackDamage() << std::endl;
         std::cout << "\033[1;37maction : ";
         std::cin >> input;
+        if (std::cin.fail())
+        {
+            std::cout << "Wrong input, quitting the game..." << std::endl;
+            return (1);
+        }
         switch (input) 
         {
         case 1:

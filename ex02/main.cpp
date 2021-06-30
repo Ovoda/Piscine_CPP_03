@@ -2,13 +2,13 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-void action_attack(ClapTrap & attacker, ClapTrap &victim)
+void action_attack(ClapTrap &attacker, ClapTrap &victim)
 {
     attacker.attack(victim.getName());
     victim.takeDamage(attacker.getAttackDamage());
 }
 
-void defeat(ClapTrap & looser)
+void defeat(ClapTrap &looser)
 {
     std::cout << "FR4G-TP <" << looser.getName() << "> has been defeated" << std::endl;
 }
@@ -24,10 +24,12 @@ int main(void)
     enemy.setAttackDamage(20);
     enemy.setHitPoints(100);
     std::cout << std::endl
-              << "\033[1;0mWelcome back Hero !" << std::endl << std::endl
+              << "\033[1;0mWelcome back Hero !" << std::endl
+              << std::endl
               << "This is level 3, you are now a FR4G-TP soldier" << std::endl
-              << "Your stats have been increased and you gain an ultimate!" << std::endl
-              << "\033[1;37mUltimate High Five : get 5 additionnal attack damage." << std::endl << std::endl
+              << "Your stats have been increased and you gained an ultimate!" << std::endl
+              << "\033[1;37mUltimate High Five : get 5 additionnal attack damage." << std::endl
+              << std::endl
               << "\033[1;0mWhat would you like to do ?" << std::endl;
 
     while (1)
@@ -35,12 +37,12 @@ int main(void)
         if (hero.getHitPoints() <= 0)
         {
             defeat(hero);
-            break ;
+            break;
         }
         else if (enemy.getHitPoints() <= 0)
         {
             defeat(enemy);
-            break ;
+            break;
         }
         std::cout << "______________________________________________________" << std::endl;
         std::cout << "[0] Ultimate High Five !" << std::endl
@@ -53,7 +55,12 @@ int main(void)
         std::cout << "\033[1;31m[Enemy] HP : " << enemy.getHitPoints() << " AD: " << enemy.getAttackDamage() << std::endl;
         std::cout << "\033[1;37maction : ";
         std::cin >> input;
-        switch (input) 
+        if (std::cin.fail())
+        {
+            std::cout << "Wrong input, quitting the game..." << std::endl;
+            return (1);
+        }
+        switch (input)
         {
         case 0:
             hero.highFivesGuys();

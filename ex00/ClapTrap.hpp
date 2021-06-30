@@ -12,7 +12,7 @@ class ClapTrap
 		ClapTrap( void );
 		ClapTrap( std::string name );
 		ClapTrap( ClapTrap const & src );
-		virtual	~ClapTrap();
+		~ClapTrap();
 		ClapTrap &		operator=( ClapTrap const & rhs );
 
 		// Methods

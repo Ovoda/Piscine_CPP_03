@@ -16,7 +16,7 @@ class ClapTrap
 		ClapTrap &		operator=( ClapTrap const & rhs );
 
 		// Methods
-		void			attack( std::string const & target );
+		virtual void	attack( std::string const & target );
 		void			takeDamage( unsigned int amount );
 		void			beRepaired( unsigned int amount );
 

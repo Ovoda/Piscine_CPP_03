@@ -1,12 +1,12 @@
 #include "ClapTrap.hpp"
 
-void action_attack(ClapTrap & attacker, ClapTrap &victim)
+void action_attack(ClapTrap &attacker, ClapTrap &victim)
 {
     attacker.attack(victim.getName());
     victim.takeDamage(attacker.getAttackDamage());
 }
 
-void defeat(ClapTrap & looser)
+void defeat(ClapTrap &looser)
 {
     std::cout << "FR4G-TP <" << looser.getName() << "> has been defeated" << std::endl;
 }
@@ -22,7 +22,8 @@ int main(void)
     enemy.setAttackDamage(2);
     hero.setAttackDamage(2);
     std::cout << std::endl
-              << "\033[1;0mWelcome back !" << std::endl << std::endl
+              << "\033[1;0mWelcome back !" << std::endl
+              << std::endl
               << "This is level 1, you are now a CL4P-TP soldier" << std::endl
               << "\033[1;0mWhat would you like to do ?" << std::endl;
 
@@ -31,12 +32,12 @@ int main(void)
         if (hero.getHitPoints() <= 0)
         {
             defeat(hero);
-            break ;
+            break;
         }
         else if (enemy.getHitPoints() <= 0)
         {
             defeat(enemy);
-            break ;
+            break;
         }
         std::cout << "______________________________________________________" << std::endl;
         std::cout << "[1] Attack enemy" << std::endl
@@ -48,7 +49,12 @@ int main(void)
         std::cout << "\033[1;31m[Enemy] HP : " << enemy.getHitPoints() << " AD: " << enemy.getAttackDamage() << std::endl;
         std::cout << "\033[1;37maction : ";
         std::cin >> input;
-        switch (input) 
+        if (std::cin.fail())
+        {
+            std::cout << "Wrong input, quitting the game..." << std::endl;
+            return (1);
+        }
+        switch (input)
         {
         case 1:
             action_attack(hero, enemy);

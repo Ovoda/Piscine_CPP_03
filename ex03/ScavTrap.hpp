@@ -20,6 +20,7 @@ class ScavTrap : virtual public ClapTrap
 		void	setEnteredMode( bool const state );
 		// Methods
 		void	guardGuate( void );
+		virtual void	attack( std::string const & target );
 
 	private:
 		bool	_is_guate_keeper_mode;
